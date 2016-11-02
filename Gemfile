@@ -9,7 +9,8 @@ gem 'puma', require: false
 gem 'sinatra', require: false
 gem 'sidekiq'
 gem 'sidekiq-cron'
-gem 'maestrano-connector-rails'
+gem 'maestrano-connector-rails', '2.0.0.pre.RC12'
+
 group :production, :uat do
   gem 'activerecord-jdbcmysql-adapter', platforms: :jruby
   gem 'mysql2', platforms: :ruby

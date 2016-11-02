@@ -45,6 +45,7 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bson (4.1.1)
     builder (3.2.2)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -104,14 +105,14 @@ GEM
       nokogiri (>= 1.5.9)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
-    maestrano (0.12.5)
-      httparty (~> 0.13)
+    maestrano (1.0.0.pre.RC7)
+      httparty (~> 0.14)
       json (~> 1.8)
       mime-types (~> 1.25)
       nokogiri (>= 1.5.0)
-      rest-client (~> 1.4)
+      rest-client (~> 1.8)
       uuid (~> 2.3)
-    maestrano-connector-rails (1.5.0)
+    maestrano-connector-rails (2.0.0.pre.RC12)
       attr_encrypted (~> 1.4.0)
       autoprefixer-rails
       bootstrap-sass
@@ -119,27 +120,37 @@ GEM
       figaro
       haml-rails
       hash_mapper (>= 0.2.2)
-      maestrano-rails
+      maestrano-rails (= 1.0.0.pre.RC7)
       rails (~> 4.2)
       sidekiq
       sidekiq-cron
       sidekiq-unique-jobs
       sinatra
       slim
-    maestrano-rails (0.15.4)
+    maestrano-rails (1.0.0.pre.RC7)
+      haml-rails
       jquery-rails
-      maestrano
-      rails
+      maestrano (= 1.0.0.pre.RC7)
+      mongoid
+      rails (~> 4.2)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     mime-types (1.25.1)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
+    mongo (2.3.0)
+      bson (~> 4.1)
+    mongoid (5.1.5)
+      activemodel (~> 4.0)
+      mongo (~> 2.1)
+      origin (~> 2.2)
+      tzinfo (>= 0.3.37)
     multi_xml (0.5.5)
     mysql2 (0.4.5)
     netrc (0.11.0)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    origin (2.2.2)
     parser (2.3.1.4)
       ast (~> 2.2)
     powerpack (0.1.1)
@@ -277,7 +288,7 @@ DEPENDENCIES
   activerecord-jdbcsqlite3-adapter
   factory_girl_rails
   jquery-rails
-  maestrano-connector-rails
+  maestrano-connector-rails (= 2.0.0.pre.RC12)
   mysql2
   puma
   rails (~> 4.2)
