@@ -1,0 +1,55 @@
+Rails:
+  Enabled: true
+
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'db/seeds.rb'
+    - 'bin/*'
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'config.ru'
+    - 'spec/**/*'
+    - 'config/**/*'
+    - 'app/helpers/application_helper.rb'
+    - 'app/controllers/application_controller.rb'
+
+# Enabled disabled Cops
+Style/CollectionMethods:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 320
+
+Style/IndentationConsistency:
+  EnforcedStyle: rails
+
+# Missing top-level class documentation comment
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Space inside braces => only for blocks (not for literal)
+Style/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+# Checks for unused block arguments
+Lint/UnusedBlockArgument:
+  Enabled: false
+
+# Checks for unused method arguments.
+Lint/UnusedMethodArgument:
+  Enabled: false
+
+Metrics/AbcSize:
+  # The ABC size is a calculated magnitude, so this number can be a Fixnum or
+  # a Float.
+  Max: 27
+
+# RSpec/FilePath:
+#   Exclude:
+    # - 'spec/routing/**/*_routing_spec.rb'
