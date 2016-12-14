@@ -30,3 +30,5 @@ group :test do
   gem 'shoulda-matchers'
   gem 'timecop'
 end
+
+gem 'pipedrive-ruby', git: 'https://github.com/mehreen-tahir/pipedrive-ruby.git', :submodules => true
