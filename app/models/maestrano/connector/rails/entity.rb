@@ -12,10 +12,13 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
   def get_external_entities(external_entity_name, last_synchronization_date = nil)
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Fetching #{Maestrano::Connector::Rails::External.external_name} #{self.class.external_entity_name.pluralize}")
 
+    # last_synchronization_date is nil, when either @opts[:full_sync] is true or last_synchronization_date is nil
     last_synchronization_date = nil if @opts[:full_sync]
     fetch_opts = {
       last_sync_date: last_synchronization_date,
     }
+
+    # Data is retrived from client based upon last_sync_date which is either present or nil in case of full syncronization
     entities = @external_client.perform(:fetch, external_entity_name, @opts.merge(fetch_opts))
 
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Received data: Source=#{Maestrano::Connector::Rails::External.external_name}, Entity=#{self.class.external_entity_name}, Response=#{entities}")
