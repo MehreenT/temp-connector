@@ -16,7 +16,7 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
     fetch_opts = {
       last_sync_date: last_synchronization_date,
     }
-    entities = @external_client.perform(:fetch, external_entity_name, fetch_opts)
+    entities = @external_client.perform(:fetch, external_entity_name, @opts.merge(fetch_opts))
 
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Received data: Source=#{Maestrano::Connector::Rails::External.external_name}, Entity=#{self.class.external_entity_name}, Response=#{entities}")
     entities

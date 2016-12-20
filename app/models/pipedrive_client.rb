@@ -4,32 +4,35 @@ class PipedriveClient
   def initialize(organization)
     #TODO Authentication mechanism based upon email and password for retrieving API token for organization
     @pipedrive = Pipedrive.authenticate(ENV['PIPEDRIVE_AUTH_TOKEN'])
+    log(:info, 'Succesfully Authenticated')
+    rescue
+      log(:warn, 'Authentication fails')
   end
 
   def perform(method, entity_name, opts = {})
-    begin
-      case method
-        when :fetch
-          results = fetch(entity_name, opts[:last_sync_date])
-          log(:info, 'Succesfully fetched', entity_name)
-        when :create
-          results = create(entity_name, opts[:params])
-          log(:info, 'Succesfully created', entity_name)
-        when :update
-          results = update(entity_name, opts[:entity_id], opts[:params])
-          log(:info, 'Succesfully updated', entity_name, opts[:entity_id])
-        end
+    case method
+      when :fetch
+        results = fetch(entity_name, opts)
+        log(:info, 'Succesfully fetched', entity_name)
+      when :create
+        results = create(entity_name, opts[:params])
+        log(:info, 'Succesfully created', entity_name)
+      when :update
+        results = update(entity_name, opts[:entity_id], opts[:params])
+        log(:info, 'Succesfully updated', entity_name, opts[:entity_id])
+      end
+    results
     rescue HTTParty::ResponseError => error
       log(:warn, error.response['error'], entity_name, opts[:entity_id])
     rescue StandardError => error
       log(:warn, error, entity_name, opts[:entity_id])
-    end
-    results
   end
 
-  def fetch(entity_name, last_sync_date = nil)
-    pipedrive_entity_name(entity_name).all.collect do |entity|
-      JSON.parse(entity.to_json)['table'] if require_syncronization?(last_sync_date, entity)
+  def fetch(entity_name, params)
+    entities = pipedrive_entity_name(entity_name).all(nil, query: { limit:  params[:__limit], start: params[:__skip] })
+
+    entities.collect do |entity|
+      JSON.parse(entity.to_json)['table'] if require_syncronization?(params[:last_sync_date], entity)
     end.compact
   end
 
@@ -52,8 +55,8 @@ class PipedriveClient
       "Pipedrive::#{entity_name}".constantize
     end
 
-    def require_syncronization?(last_sync_date, entity)
-      creation_time = entity['add_time'].nil? ? entity['created'] : entity['add_time']
+    def require_syncronization?(last_sync_date, parsed_entity)
+      creation_time = parsed_entity['add_time'].nil? ? parsed_entity['created'] : parsed_entity['add_time']
       last_sync_date.nil? || (creation_time.to_date >= last_sync_date.to_date)
     end
 end
