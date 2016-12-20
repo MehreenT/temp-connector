@@ -2,11 +2,7 @@ require 'pipedrive-ruby'
 class PipedriveClient
 
   def initialize(organization)
-    #TODO Authentication mechanism based upon email and password for retrieving API token for organization
-    @pipedrive = Pipedrive.authenticate(ENV['PIPEDRIVE_AUTH_TOKEN'])
-    log(:info, 'Succesfully Authenticated')
-    rescue
-      log(:warn, 'Authentication fails')
+    @organization = organization
   end
 
   def perform(method, entity_name, opts = {})
