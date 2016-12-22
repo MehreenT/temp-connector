@@ -1,0 +1,7 @@
+= form_tag '/auth/Pipedrive/request', method: :post do
+  .form-group
+    = text_field_tag :email, nil, placeholder: 'Pipedrive Email', class: 'form-control', required: true
+  .form-group
+    = password_field_tag :password, nil, placeholder: 'Pipedrive Password', class: 'form-control', required: true
+  = hidden_field_tag :organization_id, current_organization.uid
+  = submit_tag 'Link to Pipedrive', class: 'btn btn-warning'
