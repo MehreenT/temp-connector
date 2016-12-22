@@ -25,9 +25,8 @@ class HomeController < ApplicationController
     redirect_to(:back)
   end
 
-  # Implement the redirection to the external application
   def redirect_to_external
-    redirect_to 'https://path/to/external/app'
+    redirect_to 'https://www.pipedrive.com'
   end
 
   private
