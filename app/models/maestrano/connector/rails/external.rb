@@ -11,9 +11,7 @@ class Maestrano::Connector::Rails::External
   end
 
   def self.create_account_link(organization = nil)
-    # TODO
-    # Returns a link to the sign up page of the external application
-    '#'
+    'https://app.pipedrive.com/register'
   end
 
   # Return an array of all the entities that the connector can synchronize
