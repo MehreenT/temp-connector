@@ -46,6 +46,14 @@ class PipedriveClient
     raise message
    end
 
+  class << self
+
+    def authorization(email, password)
+      Pipedrive::Base.post('/authorizations', body: { email: email, password: password })
+    end
+
+  end
+
   private
     def pipedrive_entity_name(entity_name)
       "Pipedrive::#{entity_name}".constantize
