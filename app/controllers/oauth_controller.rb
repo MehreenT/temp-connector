@@ -14,7 +14,6 @@ class OauthController < ApplicationController
       name: response['company']['info']['name']
     )
 
-    Pipedrive.authenticate(response['api_token'])
     redirect_to root_url
     rescue => e
       Maestrano::Connector::Rails::ConnectorLogger.log('warn', current_organization, "Error validating the credentials: #{e.message}, #{e.backtrace.join("\n")}")

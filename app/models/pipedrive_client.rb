@@ -3,6 +3,7 @@ class PipedriveClient
 
   def initialize(organization)
     @organization = organization
+    authenticate_pipedrive
   end
 
   def perform(method, entity_name, opts = {})
@@ -62,5 +63,11 @@ class PipedriveClient
     def require_syncronization?(last_sync_date, parsed_entity)
       creation_time = parsed_entity['add_time'].nil? ? parsed_entity['created'] : parsed_entity['add_time']
       last_sync_date.nil? || (creation_time.to_date >= last_sync_date.to_date)
+    end
+
+    def authenticate_pipedrive
+      Pipedrive.authenticate(@organization.oauth_token) if @organization.oauth_token.present?
+      rescue => error
+        log(:warn, error)
     end
 end
