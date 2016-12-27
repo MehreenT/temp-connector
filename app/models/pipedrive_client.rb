@@ -3,10 +3,10 @@ class PipedriveClient
 
   def initialize(organization)
     @organization = organization
-    authenticate_pipedrive
   end
 
   def perform(method, entity_name, opts = {})
+    authenticate_entity(entity_name)
     case method
       when :fetch
         results = fetch(entity_name, opts)
@@ -38,7 +38,8 @@ class PipedriveClient
   end
 
   def update(entity_name, entity_id, params)
-    pipedrive_entity_name(entity_name).find(entity_id).update(params)
+    entity = find(entity_name, entity_id)
+    entity.present? ? entity.update(params) : create(entity_name, params)
   end
 
   def log(type, message, external_entity_name = nil, external_id = nil)
@@ -46,6 +47,12 @@ class PipedriveClient
     Maestrano::Connector::Rails::ConnectorLogger.log(type, @organization, message, { external_entity_name: external_entity_name, external_id: external_id, message: message })
     raise message
    end
+
+  def find(entity_name, entity_id)
+    pipedrive_entity_name(entity_name).find(entity_id)
+    rescue HTTParty::ResponseError => error
+      nil
+  end
 
   class << self
 
@@ -65,9 +72,7 @@ class PipedriveClient
       last_sync_date.nil? || (creation_time.to_date >= last_sync_date.to_date)
     end
 
-    def authenticate_pipedrive
-      Pipedrive.authenticate(@organization.oauth_token) if @organization.oauth_token.present?
-      rescue => error
-        log(:warn, error)
+    def authenticate_entity(entity_name)
+      "Pipedrive::#{entity_name}".constantize.authenticate(@organization.oauth_token)
     end
 end
