@@ -49,22 +49,16 @@ describe OauthController, type: :controller do
       let(:id) { organization.id }
       let(:user) { Maestrano::Connector::Rails::User.new(email: 'mehreen@mail.com', tenant: 'default') }
 
-      before {
-        allow_any_instance_of(Maestrano::Connector::Rails::SessionHelper).to receive(:current_user).and_return(user)
-      }
+      before { allow_any_instance_of(Maestrano::Connector::Rails::SessionHelper).to receive(:current_user).and_return(user) }
 
       context 'when not admin' do
-        before {
-          allow_any_instance_of(Maestrano::Connector::Rails::SessionHelper).to receive(:is_admin?).and_return(false)
-        }
+        before { allow_any_instance_of(Maestrano::Connector::Rails::SessionHelper).to receive(:is_admin?).and_return(false) }
 
         it { expect { subject }.to_not change { organization.oauth_token } }
       end
 
       context 'when admin' do
-        before {
-          allow_any_instance_of(Maestrano::Connector::Rails::SessionHelper).to receive(:is_admin?).and_return(true)
-        }
+        before { allow_any_instance_of(Maestrano::Connector::Rails::SessionHelper).to receive(:is_admin?).and_return(true) }
 
         it 'clear omniauth fields' do
           subject
