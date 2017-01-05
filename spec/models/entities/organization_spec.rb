@@ -25,8 +25,8 @@ describe Entities::Organization do
           name: 'organization 1',
           company_id: '1',
           people_count: 23,
-          address_admin_area_level_1: 'Adress level 1',
-          address_admin_area_level_2: 'Adress level 2',
+          address: 'Address xyz',
+          address_locality: 'New York',
           address_postal_code: '5400',
           address_country: 'US',
           add_time: 2285824789,
@@ -42,8 +42,8 @@ describe Entities::Organization do
           number_of_employees: 23,
           address: {
             billing: {
-              line1: 'Adress level 1',
-              line2: 'Adress level 2',
+              line1: 'Address xyz',
+              city: 'New York',
               postal_code: '5400',
               country: 'US',
             },
@@ -62,8 +62,8 @@ describe Entities::Organization do
           number_of_employees: 19,
           address: {
             billing: {
-              line1: 'Adress level billing 1',
-              line2: 'Adress level billing 2',
+              line1: 'Address abc',
+              city: 'New York',
               postal_code: '5400',
               country: 'US',
             },
@@ -76,8 +76,8 @@ describe Entities::Organization do
           name: 'organization 2',
           company_id: '2',
           people_count: 19,
-          address_admin_area_level_1: 'Adress level billing 1',
-          address_admin_area_level_2: 'Adress level billing 2',
+          address: 'Address abc',
+          address_locality: 'New York',
           address_postal_code: '5400',
           address_country: 'US',
         }.with_indifferent_access
