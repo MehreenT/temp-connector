@@ -5,7 +5,7 @@ describe Entities::Deal do
   describe 'class methods' do
     subject { Entities::Deal }
 
-    it { expect(subject.connec_entity_name).to eql('Opportunities') }
+    it { expect(subject.connec_entity_name).to eql('Opportunity') }
     it { expect(subject.external_entity_name).to eql('Deal') }
     it { expect(subject.object_name_from_connec_entity_hash({ name: 'abc' }.with_indifferent_access)).to eql('abc') }
     it { expect(subject.object_name_from_external_entity_hash({ title: 'xyz' }.with_indifferent_access)).to eql('xyz') }

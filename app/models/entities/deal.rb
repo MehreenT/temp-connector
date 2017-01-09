@@ -1,6 +1,6 @@
 class Entities::Deal < Maestrano::Connector::Rails::Entity
   def self.connec_entity_name
-    'Opportunities'
+    'Opportunity'
   end
 
   def self.external_entity_name
