@@ -33,6 +33,7 @@ describe Entities::Product do
               overhead_cost: 3,
             }
           ],
+          selectable: true,
           add_time: 2285824789,
           update_time: 2285824799,
         }.with_indifferent_access
@@ -50,6 +51,7 @@ describe Entities::Product do
             net_amount: 7,
             tax_amount: 3,
           },
+          status: true,
         }.with_indifferent_access
       }
 
@@ -68,6 +70,7 @@ describe Entities::Product do
             net_amount: 10,
             tax_amount: 5,
            },
+          status: false,
         }.with_indifferent_access
       }
 
@@ -84,6 +87,7 @@ describe Entities::Product do
               overhead_cost: 5,
             }
           ],
+          selectable: false,
         }.with_indifferent_access
       }
 

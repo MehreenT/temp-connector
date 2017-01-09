@@ -26,6 +26,7 @@ class ProductMapper
   map from('name'), to('name')
   map from('code'), to('code')
   map from('unit'), to('unit')
+  map from('status'), to('selectable')
   map from('sale_price/currency'), to('prices[0]/currency')
   map from('sale_price/total_amount'), to('prices[0]/price')
   map from('sale_price/net_amount'), to('prices[0]/cost')
