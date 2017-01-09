@@ -15,6 +15,6 @@ class Maestrano::Connector::Rails::External
   end
 
   def self.entities_list
-    %w(organization)
+    %w(organization deal product)
   end
 end
