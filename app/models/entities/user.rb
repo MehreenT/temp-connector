@@ -29,7 +29,7 @@ class UserMapper
 
   # Mapping to PipeDrive
   after_normalize do |input, output|
-    output[:name] = [input['first_name'], input['last_name']].join(' ').to_s.strip
+    output[:name] = [input['first_name'], input['last_name']].join(' ').strip
 
     output
   end
