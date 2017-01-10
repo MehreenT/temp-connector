@@ -5,7 +5,7 @@ describe Entities::User do
   describe 'class methods' do
     subject { Entities::User }
 
-    it { expect(subject.connec_entity_name).to eql('App_Users') }
+    it { expect(subject.connec_entity_name).to eql('App_User') }
     it { expect(subject.external_entity_name).to eql('User') }
     it { expect(subject.object_name_from_connec_entity_hash({ first_name: 'abc', last_name: 'def' }.with_indifferent_access)).to eql('abc def') }
     it { expect(subject.object_name_from_external_entity_hash({ name: 'xyz' }.with_indifferent_access)).to eql('xyz') }
