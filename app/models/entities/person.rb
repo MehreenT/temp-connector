@@ -20,7 +20,7 @@ class Entities::Person < Maestrano::Connector::Rails::Entity
   end
 
   def self.references
-    %w(organization_id lead_referent_id)
+    %w(organization_id assignee_id)
   end
 end
 
@@ -36,8 +36,7 @@ class PersonMapper
 
   # Mapping to Connec!
   after_denormalize do |input, output|
-    output[:is_customer] = true
-    output[:lead_referent_type] = 'Entity::Person'
+    output[:assignee_type] = 'AppUser'
 
     output
   end
@@ -46,5 +45,6 @@ class PersonMapper
   map from('last_name'), to('last_name')
   map from('email/address'), to('email[0]/value')
   map from('organization_id'), to('company_id')
-  map from('lead_referent_id'), to('owner_id/id')
+  map from('assignee_id'), to('owner_id/id')
+  map from('phone_work/landline'), to('phone[0]/value')
 end

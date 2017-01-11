@@ -34,6 +34,11 @@ describe Entities::Person do
           owner_id: {
             id: 'own-id',
           },
+          phone: [
+            {
+              value: '111222333',
+            },
+          ],
           add_time: 2285824789,
           update_time: 2285824799,
         }.with_indifferent_access
@@ -43,13 +48,15 @@ describe Entities::Person do
         {
           id: [{ id: 'id-person1', provider: organization.oauth_provider, realm: organization.oauth_uid }],
           organization_id: [{ id: 'comp-id', provider: organization.oauth_provider, realm: organization.oauth_uid }],
-          lead_referent_id: [{ id: 'own-id', provider: organization.oauth_provider, realm: organization.oauth_uid }],
-          lead_referent_type: 'Entity::Person',
+          assignee_id: [{ id: 'own-id', provider: organization.oauth_provider, realm: organization.oauth_uid }],
+          assignee_type: 'AppUser',
           first_name: 'person',
           last_name: '1',
-          is_customer: true,
           email: {
             address: 'mail@gmail.com',
+          },
+          phone_work: {
+            landline: '111222333'
           },
         }.with_indifferent_access
       }
@@ -65,6 +72,9 @@ describe Entities::Person do
           email: {
             address: 'mail@gmail.com',
           },
+          phone_work: {
+            landline: '444555666'
+          },
         }.with_indifferent_access
       }
 
@@ -76,6 +86,11 @@ describe Entities::Person do
           email: [
             {
               value: 'mail@gmail.com',
+            },
+          ],
+          phone: [
+            {
+              value: '444555666',
             },
           ],
         }.with_indifferent_access
