@@ -20,7 +20,7 @@ class Entities::Deal < Maestrano::Connector::Rails::Entity
   end
 
   def self.references
-    %w(lead_id assignee_id)
+    %w(assignee_id)
   end
 end
 
@@ -39,6 +39,5 @@ class DealMapper
   map from('expected_close_date'), to('expected_close_date')
   map from('amount/total_amount'), to('value')
   map from('next_step'), to('next_activity_subject')
-  map from('lead_id'), to('org_id/value')
   map from('assignee_id'), to('creator_user_id/id')
 end

@@ -27,9 +27,6 @@ describe Entities::Deal do
           value: 18,
           expected_close_date: '27-01-2017',
           next_activity_subject: 'abc',
-          org_id: {
-            value: 1,
-          },
           creator_user_id: {
             id: 2,
           },
@@ -41,7 +38,6 @@ describe Entities::Deal do
       let (:connec_hash) {
         {
           id: [{ id: 'id-deal1', provider: organization.oauth_provider, realm: organization.oauth_uid }],
-          lead_id: [{ id: 1, provider: organization.oauth_provider, realm: organization.oauth_uid }],
           assignee_id: [{ id: 2, provider: organization.oauth_provider, realm: organization.oauth_uid }],
           assignee_type: 'AppUser',
           name: 'Deal 1',
