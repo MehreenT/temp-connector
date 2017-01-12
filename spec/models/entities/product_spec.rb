@@ -51,7 +51,7 @@ describe Entities::Product do
             net_amount: 7,
             tax_amount: 3,
           },
-          status: true,
+          status: 'ACTIVE',
         }.with_indifferent_access
       }
 
@@ -70,7 +70,7 @@ describe Entities::Product do
             net_amount: 10,
             tax_amount: 5,
            },
-          status: false,
+          status: 'INACTIVE',
         }.with_indifferent_access
       }
 
